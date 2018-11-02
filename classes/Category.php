@@ -50,6 +50,13 @@
 		    	return $result;
 		    	
 		    }
+
+		    public function getCategoryById($cateditid){
+		    	$cateditid  = mysqli_real_escape_string($this->db->link,$cateditid);
+		    	$query = "SELECT * FROM tbl_category WHERE catId = '$cateditid' ";
+		    	$result = $this->db->select($query);
+		    	return $result;
+		    }
 		
 
 
