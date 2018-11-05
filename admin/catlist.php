@@ -5,7 +5,12 @@
 <?php 
     
     $cat = new Category();
-      
+    if (isset($_GET['catdelid'])) {
+         $catdelid  = $_GET['catdelid'];
+         $deleteCategory = $cat->deleteCategory($catdelid);
+        }else{
+           
+        }
 
  ?>
 
@@ -13,7 +18,14 @@
         <div class="grid_10">
             <div class="box round first grid">
                 <h2>Category List</h2>
-                <div class="block">        
+                <?php 
+
+                    if (isset($deleteCategory)) {
+                        echo $deleteCategory;
+                    }
+
+                 ?> 
+                <div class="block">      
                     <table class="data display datatable" id="example">
 					<thead>
 						<tr>

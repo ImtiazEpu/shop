@@ -13,7 +13,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $catName = $_POST['catName'];
 
-        $addCategory = $cat->addCategory($catName);
+        $updateCategory = $cat->updateCategory($catName, $cateditid);
     }
 
  ?>
@@ -27,8 +27,8 @@
                <div class="block copyblock" style="text-align: center;"> 
                 <?php 
 
-                    if (isset($addCategory)) {
-                        echo $addCategory;
+                    if (isset($updateCategory)) {
+                        echo $updateCategory;
                     }
 
                  ?>
@@ -38,11 +38,11 @@
                     if ($getCategory) {
                         while ($result = $getCategory->fetch_assoc()) {
                 ?>
-                 <form action="" method="POST">
+                 <form action="" method="post">
                     <table class="form">					
                         <tr>
                             <td>
-                                <input type="text"  value="<?php echo $result['catName']; ?>" class="medium" />
+                                <input type="text" name="catName" value="<?php echo $result['catName']; ?>" class="medium" />
                             </td>
                         </tr>
 						<tr> 
