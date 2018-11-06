@@ -6,7 +6,7 @@
     
     $cat = new Category();
     if (isset($_GET['catdelid'])) {
-         $catdelid  = $_GET['catdelid'];
+         $catdelid  = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['catdelid']);
          $deleteCategory = $cat->deleteCategory($catdelid);
         }else{
            

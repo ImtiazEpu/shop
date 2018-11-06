@@ -6,7 +6,7 @@
         if (!isset($_GET['cateditid']) || $_GET['cateditid'] == NULL ) {
            echo "<script type='text/javascript'>window.top.location='catlist.php';</script>"; 
         }else {
-           $cateditid  = $_GET['cateditid'];
+           $cateditid  = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['cateditid']) ;
         }
     
     $cat = new Category();
