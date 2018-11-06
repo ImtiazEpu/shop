@@ -1,5 +1,13 @@
 ﻿<?php include 'inc/header.php';?>
 <?php include 'inc/sidebar.php';?>
+<?php include "../Classes/Brand.php";?>
+<?php include "../Classes/Category.php";?>
+
+<?php 
+     $brand = new Brand();
+     $cat   = new Category();
+ ?>
+
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Add New Product</h2>
@@ -12,7 +20,7 @@
                         <label>Name</label>
                     </td>
                     <td>
-                        <input type="text" placeholder="Enter Product Name..." class="medium" />
+                        <input type="text" name="productName" placeholder="Enter Product Name..." class="medium" />
                     </td>
                 </tr>
 				<tr>
@@ -20,11 +28,14 @@
                         <label>Category</label>
                     </td>
                     <td>
-                        <select id="select" name="select">
+                        <select id="select" name="catId">
                             <option>Select Category</option>
-                            <option value="1">Category One</option>
-                            <option value="2">Category Two</option>
-                            <option value="3">Category Three</option>
+                            <?php 
+                                $getcat = $cat->getALLCategory();
+                                if ($getcat) {
+                                    while ($result = $getcat->fetch_assoc()) {?>
+                            <option value="<?php echo $result['catId']; ?>"><?php echo $result['catName'];  ?></option>
+                            <?php }} ?>
                         </select>
                     </td>
                 </tr>
@@ -33,11 +44,14 @@
                         <label>Brand</label>
                     </td>
                     <td>
-                        <select id="select" name="select">
+                        <select id="select" name="brandId">
                             <option>Select Brand</option>
-                            <option value="1">Brand One</option>
-                            <option value="2">Brand Two</option>
-                            <option value="3">Brand Three</option>
+                            <?php 
+                                $getBrand = $brand->getALLBrand();
+                                if ($getBrand) {
+                                    while ($result = $getBrand->fetch_assoc()) {?>
+                            <option value="<?php echo $result['brandId'] ?>"><?php echo $result['brandName'] ?></option>
+                            <?php }} ?>
                         </select>
                     </td>
                 </tr>
@@ -47,7 +61,7 @@
                         <label>Description</label>
                     </td>
                     <td>
-                        <textarea class="tinymce"></textarea>
+                        <textarea class="tinymce" name="productBody"></textarea>
                     </td>
                 </tr>
 				<tr>
@@ -55,7 +69,7 @@
                         <label>Price</label>
                     </td>
                     <td>
-                        <input type="text" placeholder="Enter Price..." class="medium" />
+                        <input type="text" name="productPrice" placeholder="Enter Price..." class="medium" />
                     </td>
                 </tr>
             
@@ -64,7 +78,7 @@
                         <label>Upload Image</label>
                     </td>
                     <td>
-                        <input type="file" />
+                        <input type="file" name="productImage" />
                     </td>
                 </tr>
 				
@@ -73,10 +87,10 @@
                         <label>Product Type</label>
                     </td>
                     <td>
-                        <select id="select" name="select">
+                        <select id="select" name="productType">
                             <option>Select Type</option>
-                            <option value="1">Featured</option>
-                            <option value="2">Non-Featured</option>
+                            <option value="0">Featured</option>
+                            <option value="1">General</option>
                         </select>
                     </td>
                 </tr>
