@@ -2,16 +2,24 @@
 <?php include 'inc/sidebar.php';?>
 <?php include "../Classes/Brand.php";?>
 <?php include "../Classes/Category.php";?>
+<?php include "../Classes/Product.php";?>
 
 <?php 
      $brand = new Brand();
      $cat   = new Category();
- ?>
+     $prod   = new Product();
+  
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+
+        $addProduct = $prod->addProduct($_POST,$_FILES);
+    }
+  ?>
 
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Add New Product</h2>
-        <div class="block">               
+        <div class="block">
+        <?php if (isset($addProduct)) { echo $addProduct;} ?>               
          <form action="" method="post" enctype="multipart/form-data">
             <table class="form">
                
@@ -29,7 +37,7 @@
                     </td>
                     <td>
                         <select id="select" name="catId">
-                            <option>Select Category</option>
+                            <option value="">Select Category</option>
                             <?php 
                                 $getcat = $cat->getALLCategory();
                                 if ($getcat) {
@@ -45,7 +53,7 @@
                     </td>
                     <td>
                         <select id="select" name="brandId">
-                            <option>Select Brand</option>
+                            <option value="">Select Brand</option>
                             <?php 
                                 $getBrand = $brand->getALLBrand();
                                 if ($getBrand) {
