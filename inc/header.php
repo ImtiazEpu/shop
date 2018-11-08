@@ -1,3 +1,32 @@
+<?php 
+    
+    include "/lib/Session.php"; 
+    Session::init();
+    include "/lib/Database.php"; 
+	include "/helpers/Formate.php";
+
+	spl_autoload_register( function($class){
+
+		include_once "classes/".$class.".php";
+	});
+
+	$db     = new Database();
+	$fm     = new Formate();
+	$fm     = new Formate();
+	$brand  = new Brand();
+    $cat    = new Category();
+    $prod   = new Product();
+    $crt    = new Cart();
+    $user   = new User();
+ ?>
+
+<?php
+  header("Cache-Control: no-cache, must-revalidate");
+  header("Pragma: no-cache"); 
+  header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); 
+  header("Cache-Control: max-age=2592000");
+?>
+
 <!DOCTYPE HTML>
 <head>
 <title>Store Website</title>
