@@ -1,7 +1,9 @@
 <?php 
+
+$filepath = realpath(dirname(__FILE__));
 	
-	include_once "../lib/Database.php"; 
-	include_once "../helpers/Formate.php"; 
+	include_once ($filepath."/../lib/Database.php"); 
+	include_once ($filepath."/../helpers/Formate.php"); 
 ?>
 
 <?php 
@@ -30,14 +32,13 @@
 		    	$productName   = $this->fm->validation($data['productName']);
 		    	$catId  	   = $this->fm->validation($data['catId']);
 		    	$brandId  	   = $this->fm->validation($data['brandId']);
-		    	$productBody   = $this->fm->validation($data['productBody']);
 		    	$productPrice  = $this->fm->validation($data['productPrice']);
 		    	$productType   = $this->fm->validation($data['productType']);
 
 		    	$productName   = mysqli_real_escape_string($this->db->link,$productName);
 		    	$catId         = mysqli_real_escape_string($this->db->link,$catId);
 		    	$brandId       = mysqli_real_escape_string($this->db->link,$brandId);
-		    	$productBody   = mysqli_real_escape_string($this->db->link,$productBody);
+		    	$productBody   = mysqli_real_escape_string($this->db->link,$data['productBody']);
 		    	$productPrice  = mysqli_real_escape_string($this->db->link,$productPrice);
 		    	$productType   = mysqli_real_escape_string($this->db->link,$productType);
 
@@ -137,14 +138,13 @@
 		    	$productName   = $this->fm->validation($data['productName']);
 		    	$catId  	   = $this->fm->validation($data['catId']);
 		    	$brandId  	   = $this->fm->validation($data['brandId']);
-		    	$productBody   = $this->fm->validation($data['productBody']);
 		    	$productPrice  = $this->fm->validation($data['productPrice']);
 		    	$productType   = $this->fm->validation($data['productType']);
 
 		    	$productName   = mysqli_real_escape_string($this->db->link,$productName);
 		    	$catId         = mysqli_real_escape_string($this->db->link,$catId);
 		    	$brandId       = mysqli_real_escape_string($this->db->link,$brandId);
-		    	$productBody   = mysqli_real_escape_string($this->db->link,$productBody);
+		    	$productBody   = mysqli_real_escape_string($this->db->link,$data['productBody']);
 		    	$productPrice  = mysqli_real_escape_string($this->db->link,$productPrice);
 		    	$productType   = mysqli_real_escape_string($this->db->link,$productType);
 
@@ -265,7 +265,11 @@
 		    }/*End Category Delete Method */
 
 
-
+		    public function getFeturedProduct(){
+		    	$query  = "SELECT * FROM tbl_product WHERE productType = '0' ORDER BY productId DESC LIMIT 4 ";
+		    	$result = $this->db->select($query);
+		    	return $result;
+		    }
 
 
 
