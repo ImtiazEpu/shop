@@ -23,13 +23,14 @@
 
 <div class="grid_10">
     <div class="box round first grid">
-        <h2>Add New Product</h2>
+        <h2>Update Product</h2>
         <div class="block">
         <?php if (isset($updateProduct)) { echo $updateProduct;} ?> 
-        <?php 
-            $getproduct = $prod->getProductById($proeditid);
-                if ($getproduct) {
-                    while ($value = $getproduct->fetch_assoc()) {?>              
+<?php 
+    $getproduct = $prod->getProductById($proeditid);
+        if ($getproduct) {
+            while ($value = $getproduct->fetch_assoc()){ ?>
+
          <form action="" method="post" enctype="multipart/form-data">
             <table class="form">
                
@@ -77,7 +78,7 @@
                                 <?php 
                                     if ($value['brandId'] == $result['brandId']) {?>
                                         selected = "selected"
-                                <?php }?>value="<?php echo $result['brandId'] ?>"><?php echo $result['brandName'] ?>
+                                <?php }?>value="<?php echo $result['brandId']; ?>"><?php echo $result['brandName']; ?>
                             </option>
                             <?php }} ?>
                         </select>
@@ -107,7 +108,7 @@
                     </td>
                     <td>
                         <img src="<?php echo $value['productImage']; ?>" height="150px" width="150px" style="margin-left: 11px;" alt=""><br/>
-                        <input type="file" name="productImage"  />
+                        <input type="file" name="productImage" />
                     </td>
                 </tr>
 				
@@ -133,12 +134,12 @@
 				<tr>
                     <td></td>
                     <td>
-                        <input type="submit" name="submit" Value="Save" />
+                        <input type="submit" name="submit" Value="Update" />
                     </td>
                 </tr>
             </table>
             </form>
-        <?php }} ?>
+<?php }} ?>
         </div>
     </div>
 </div>

@@ -96,7 +96,7 @@
                     </td>
                     <td>
                         <select id="select" name="productType">
-                            <option>Select Type</option>
+                            <option value="">Select Type</option>
                             <option value="0">Featured</option>
                             <option value="1">General</option>
                         </select>
