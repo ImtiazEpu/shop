@@ -613,8 +613,9 @@ p.note{
 	text-align:center;
 	position:relative; 
 }
-.images_1_of_4  img{
-	max-width:100%;
+.images_1_of_4 img {
+	max-width: 100%;
+	height: 200px;
 }
 .discount{
 	background:url(../images/discount-img.png) no-repeat 0 0;
@@ -2474,4 +2475,19 @@ p.terms {
 		width:92%;
 		padding:4%;
 	}
+}
+.notfound {
+	min-height: 400px;
+	padding-top: 100px;
+}
+.notfound p {
+	font-size: 100px;
+	font-weight: bold;
+	line-height: 137px;
+	text-align: center;
+}
+.notfound p span {
+	color: #ff0000;
+	display: block;
+	font-size: 200px;
 }

@@ -265,13 +265,38 @@ $filepath = realpath(dirname(__FILE__));
 		    }/*End Category Delete Method */
 
 
+
+
+		    /* Get Fetured Product
+		    =======================*/
 		    public function getFeturedProduct(){
 		    	$query  = "SELECT * FROM tbl_product WHERE productType = '0' ORDER BY productId DESC LIMIT 4 ";
 		    	$result = $this->db->select($query);
 		    	return $result;
-		    }
+		    }/*End Fetured Product Select Method */
+
+
+
+
+		    /* Get New Product
+		    =======================*/
+		    public function getNewProduct(){
+		    	$query  = "SELECT * FROM tbl_product ORDER BY productId DESC LIMIT 4 ";
+		    	$result = $this->db->select($query);
+		    	return $result;
+		    }/*End New Product Select Method */
+
+
+		    /* Get Single Product Details
+		    ============================*/
+		    public function getSingleProduct($proid){
+		    	$query = "SELECT p.*, c.catName, b.brandName
+						  FROM tbl_product as p, tbl_category as c, tbl_brand as b
+						  WHERE p.catId = c.catId AND p.brandId = b.brandId AND p.productId = '$proid' ";
+		    	$result = $this->db->select($query);
+		    	return $result;
+		    }/*End Single Product Details Method */
 
 
 
 	}/*End Product Class */
- ?>
