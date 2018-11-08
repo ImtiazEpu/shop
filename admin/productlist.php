@@ -8,11 +8,19 @@
 	$fm   = new Formate();
 
  ?>
+ <?php 
+ 	if (isset($_GET['prodelid'])) {
+         $prodelid  = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['prodelid']);
+         $deleteProduct = $prod->deleteProduct($prodelid);
+        }
+
+  ?>
 
 
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Post List</h2>
+        <?php if (isset($deleteProduct)) {echo $deleteProduct; }?> 
         <div class="block">  
             <table class="data display datatable" id="example">
 			<thead>

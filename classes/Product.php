@@ -238,6 +238,36 @@
 
 
 
+			/* Delete Category
+		    =======================*/
+
+		    public function deleteProduct($prodelid){
+		    	$prodelid  = mysqli_real_escape_string($this->db->link,$prodelid);
+		    	$query = "SELECT * FROM tbl_product WHERE productId = '$prodelid'";
+		    	$getData = $this->db->select($query);
+		    	if ($getData) {
+		    		while ($delImg = $getData->fetch_assoc()) {
+		    		    $delLink = $delImg['productImage'];
+		    		    unlink($delLink);
+		    		}
+		    	}
+
+		    	$query ="DELETE FROM tbl_product WHERE productId = '$prodelid' ";
+		    	$result = $this->db->delete($query);
+		    	if ($result) {
+		    			$successmsg = "<span class='successs'>Product Deleted Successfully !!</span>";
+	    				return $successmsg;
+		    		}else {
+		    			$errormsg = "<span class='error'>Something went wrong !!</span>";
+	    				return $errormsg;
+		    		}
+
+		    }/*End Category Delete Method */
+
+
+
+
+
 
 	}/*End Product Class */
  ?>
