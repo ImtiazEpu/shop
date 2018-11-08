@@ -46,7 +46,7 @@
 						<tr class="odd gradeX">
 							<td><?php echo $i; ?></td>
 							<td><?php echo $result['catName']; ?></td>
-							<td><a href="editcat.php?cateditid=<?php echo $result['catId']; ?>">Edit</a> || <a onclick="return confirm('Are you sure to Delete ?');" href="?catdelid=<?php echo $result['catId']; ?>">Delete</a></td>
+							<td><a class="btn btn-info" href="editcat.php?cateditid=<?php echo $result['catId']; ?>">Edit</a>  <a class="btn btn-danger" onclick="return confirm('Are you sure to Delete ?');" href="?catdelid=<?php echo $result['catId']; ?>">Delete</a></td>
 						</tr>
 					<?php 	}}else {
 						echo "<span class='error'>Something went wrong !! Category not found.</span>";

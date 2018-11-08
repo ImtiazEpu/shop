@@ -51,7 +51,7 @@
 			    $unique_name = substr(md5(time()), 0,10).'.'.$file_ext;
 			    $uploded_image = "upload/". $unique_name;
 
-			    	if ($productName == "" || $productBody == "" || $productPrice == "" || $productType == "") {
+			    	if ($productName == "" || $productBody == "" || $productPrice == "") {
 			    		$emperrmsg = "<span class='error'>Filed must not be empty !!</span>";
 		    			return $emperrmsg;
 
@@ -62,6 +62,10 @@
 					}elseif ($brandId == "") {
 					      $emperrmsg = "<span class='error'>You must select at least one Brand item !!</span>";
 					      return $emperrmsg;
+
+					}elseif ($productType == "") {
+					      $emperrmsg = "<span class='error'>You must select at least one Product Type !!</span>";
+					      return $emperrmsg;      
 
 					}elseif (empty($file_name)) {
 					      $emperrmsg = "<span class='error'>Please select an image !!</span>";
@@ -107,6 +111,20 @@
 		    	return $result;
 		    	
 		    }/*End Product Show Method */
+
+
+
+
+		     /* Get Product
+		    =======================*/
+
+		    public function getProductById($proeditid){
+		    	$proeditid  = mysqli_real_escape_string($this->db->link,$proeditid);
+		    	$query  = "SELECT * FROM tbl_product WHERE productId = '$proeditid' ";
+		    	$result = $this->db->select($query);
+		    	return $result;
+
+		    }/*End Product Get Method */
 
 	}/*End Product Class */
  ?>

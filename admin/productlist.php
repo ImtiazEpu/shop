@@ -17,15 +17,15 @@
             <table class="data display datatable" id="example">
 			<thead>
 				<tr>
-					<th>No</th>
-					<th>Product Name</th>
-					<th>Category</th>
-					<th>Brand</th>
-					<th>Description</th>
-					<th>Price</th>
-					<th>Image</th>
-					<th>Type</th>
-					<th>Action</th>
+					<th width="3%">No</th>
+					<th width="15%">Product Name</th>
+					<th width="12%">Category</th>
+					<th width="5%">Brand</th>
+					<th width="20%">Description</th>
+					<th width="10%">Price</th>
+					<th width="10%">Image</th>
+					<th width="10%">Type</th>
+					<th width="15%">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -52,7 +52,7 @@
 						?>
 							
 					</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
+					<td><a class="btn btn-info" href="editpro.php?proeditid=<?php echo $result['productId']; ?>">Edit</a>  <a class="btn btn-danger" onclick="return confirm('Are you sure to Delete ?');" href="?prodelid=<?php echo $result['productId']; ?>">Delete</a></td>
 				</tr>
 			<?php }} ?>
 				
