@@ -97,8 +97,7 @@
 			    				 WHERE cartId = '$cartId'";
 					    		$result = $this->db->update($query);
 					    		if ($result) {
-					    			$successmsg = "<span class='successs'>Quantity Update Successfully !!</span>";
-				    				return $successmsg;
+					    			echo "<script type='text/javascript'>window.top.location='cart.php';</script>";
 					    		}else {
 					    			$errormsg = "<span class='error'>Something went wrong !!</span>";
 				    				return $errormsg;
@@ -128,6 +127,19 @@
 			    		}
 
 			    }/*End Cart Product Delete Method */
+
+
+
+
+			   /* Product to cart
+				 =======================*/
+				 public function checkCartTable(){
+				 	$sessionId = session_id();
+				 	$query  = "SELECT * FROM tbl_cart WHERE sessionId = '$sessionId' ";
+				 	$result = $this->db->select($query);
+				 	return $result;
+
+			    } /* End Productto cart Method*/
 
 			}/*End Cart Class*/
 ?>

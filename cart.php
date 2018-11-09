@@ -14,6 +14,14 @@
 	       
 	    }
  ?>
+ <?php 
+
+ 	if (!isset($_GET['id'])){
+ 		echo "<meta http-equiv='refresh' content='0;URL=?id=realtime'/>";
+ 	}  
+
+
+  ?>
 <div class="main">
 	<div class="content">
 		<div class="cartoption">		
@@ -38,6 +46,7 @@
 						if ($getAddToCart) {
 							$i=0;
 							$sum = 0;
+							$qty = 0;
 							while ($result = $getAddToCart->fetch_assoc()) {$i++; ?>
 							<tr>
 								<td><?php echo $i; ?></td>
@@ -60,9 +69,19 @@
 								</td>
 								<td><a onclick="return confirm('Are you sure to Delete ?')" href="?delcartid=<?php echo $result['cartId']; ?>">X</a></td>
 							</tr>
-							<?php $sum = $sum + $total;?>
+							<?php 
+								$sum = $sum + $total;
+								$qty = $qty + $result['quantity'];
+								Session::set("sum",$sum);
+								Session::set("qty",$qty);
+
+							?>
 						<?php }} ?>
 					</table>
+					<?php 
+						$getCart = $crt->checkCartTable();
+							 if ($getCart) {
+					 ?>
 					<table style="float:right;text-align:left;" width="40%">
 						<tr>
 							<th>Sub Total : </th>
@@ -83,6 +102,10 @@
 							</td>
 						</tr>
 					</table>
+				<?php }else {
+					echo "<script type='text/javascript'>window.top.location='index.php';</script>"; 
+				}
+					?>
 				</div>
 				<div class="shopping">
 					<div class="shopleft">

@@ -300,4 +300,59 @@ $filepath = realpath(dirname(__FILE__));
 
 
 
+
+		    /* Get New Brand
+		    =======================*/
+		    public function latestFromIphone(){
+		    	$query  = "SELECT * FROM tbl_product WHERE brandId = '1' ORDER BY productId DESC LIMIT 1 ";
+		    	$result = $this->db->select($query);
+		    	return $result;
+		    }/*End New Brand Select Method */
+
+
+
+		    /* Get New Brand
+		    =======================*/
+		    public function latestFromSamsung(){
+		    	$query  = "SELECT * FROM tbl_product WHERE brandId = '2' ORDER BY productId DESC LIMIT 1 ";
+		    	$result = $this->db->select($query);
+		    	return $result;
+		    }/*End New Brand Select Method */
+
+
+
+		    /* Get New Brand
+		    =======================*/
+		    public function latestFromIAcer(){
+		    	$query  = "SELECT * FROM tbl_product WHERE brandId = '3' ORDER BY productId DESC LIMIT 1 ";
+		    	$result = $this->db->select($query);
+		    	return $result;
+		    }/*End New Brand Select Method */
+
+
+
+		    /* Get New Brand
+		    =======================*/
+		    public function latestFromCanon(){
+		    	$query  = "SELECT * FROM tbl_product WHERE brandId = '4' ORDER BY productId DESC LIMIT 1 ";
+		    	$result = $this->db->select($query);
+		    	return $result;
+		    }/*End New Brand Select Method */
+
+
+
+		    /* Get Product category
+		    =======================*/
+
+		    public function productByCategory($catid){
+		    	$catid  = mysqli_real_escape_string($this->db->link,$catid);
+		    	$query  = "SELECT * FROM tbl_product WHERE catId = '$catid' ";
+		    	$result = $this->db->select($query);
+		    	return $result;
+
+		    }/*End Product category Get Method */
+
+
+
+
 	}/*End Product Class */
