@@ -290,6 +290,7 @@ $filepath = realpath(dirname(__FILE__));
 		    /* Get Single Product Details
 		    ============================*/
 		    public function getSingleProduct($proid){
+		    	$proid  = mysqli_real_escape_string($this->db->link,$proid);
 		    	$query = "SELECT p.*, c.catName, b.brandName
 						  FROM tbl_product as p, tbl_category as c, tbl_brand as b
 						  WHERE p.catId = c.catId AND p.brandId = b.brandId AND p.productId = '$proid' ";
