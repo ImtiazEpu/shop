@@ -16,7 +16,7 @@
     $cat    = new Category();
     $prod   = new Product();
     $crt    = new Cart();
-    $user   = new User();
+    $cmr    = new Customer();
  ?>
 
 <?php
