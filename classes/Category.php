@@ -97,20 +97,20 @@
 		    	if (empty($catName)) {
 		    		$emperrmsg = "<span class='error'>Filed must not be empty !!</span>";
 	    			return $emperrmsg;
-		    	}else {
-		    		$query = "UPDATE tbl_category 
-		    				 SET
-		    				 catName = '$catName' 
-		    				 WHERE catId = '$cateditid'";
-		    		$result = $this->db->update($query);
-		    		if ($result) {
-		    			$successmsg = "<span class='successs'>Category Update Successfully !!</span>";
-	    				return $successmsg;
-		    		}else {
-		    			$errormsg = "<span class='error'>Something went wrong !!</span>";
-	    				return $errormsg;
-		    		}
-		    	}
+				    	}else {
+				    		$query = "UPDATE tbl_category 
+				    				 SET
+				    				 catName = '$catName' 
+				    				 WHERE catId = '$cateditid'";
+				    		$result = $this->db->update($query);
+				    		if ($result) {
+				    			$successmsg = "<span class='successs'>Category Update Successfully !!</span>";
+			    				return $successmsg;
+				    		}else {
+				    			$errormsg = "<span class='error'>Something went wrong !!</span>";
+			    				return $errormsg;
+				    		}
+				    	}
 		    	
 		    }/*End Category Update Method */
 

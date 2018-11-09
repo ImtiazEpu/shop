@@ -42,6 +42,7 @@
 	    								</form>				
 	    							</div>
 	    						</div>
+	    						<?php if (isset($addToCart)) {echo $addToCart;} ?>
 	    						<div class="product-desc">
 	    							<h2>Product Details</h2>
 	    							<?php echo $result['productBody']; ?>

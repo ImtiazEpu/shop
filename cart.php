@@ -1,10 +1,18 @@
 <?php include "inc/header.php"; ?>
+<?php 
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	        $cartId = $_POST['cartId'];
+	        $quantity = $_POST['quantity'];
 
+	        $updateCart = $crt->updateCart($cartId, $quantity);
+	    }
+ ?>
 <div class="main">
 	<div class="content">
 		<div class="cartoption">		
 			<div class="cartpage">
 				<h2>Your Cart</h2>
+				<?php if (isset($updateCart)) {echo $updateCart;} ?>
 				<table class="tblone">
 					<tr>
 						<th width="5%">SL</th>
@@ -19,10 +27,10 @@
 					<?php 
 
 					$getAddToCart = $crt->getAddToCart();
-					if ($getAddToCart) {
-						$i=0;
-						$sum = 0;
-						while ($result = $getAddToCart->fetch_assoc()) {$i++; ?>
+						if ($getAddToCart) {
+							$i=0;
+							$sum = 0;
+							while ($result = $getAddToCart->fetch_assoc()) {$i++; ?>
 							<tr>
 								<td><?php echo $i; ?></td>
 								<td><?php echo $result['productName']; ?></td>
@@ -30,20 +38,21 @@
 								<td>$<?php echo $result['productPrice']; ?></td>
 								<td>
 									<form action="" method="post">
-										<input type="number" name="" value="1"/>
+										<input type="hidden" name="cartId" value="<?php echo $result['cartId']; ?>"/>
+										<input type="number" name="quantity" value="<?php echo $result['quantity']; ?>"/>
 										<input type="submit" name="submit" value="Update"/>
 									</form>
 								</td>
 								<td>$
 									<?php 
 									$total = $result['productPrice'] * $result['quantity'];
-										echo $total; 
+									echo $total; 
 									?>
 									
 								</td>
 								<td><a href="">X</a></td>
 							</tr>
-						<?php $sum = $sum + $total;?>
+							<?php $sum = $sum + $total;?>
 						<?php }} ?>
 					</table>
 					<table style="float:right;text-align:left;" width="40%">
@@ -62,8 +71,8 @@
 									$vat = $sum * 0.15;
 									$gTotal = $sum + $vat;
 									echo $gTotal;
-							 	?>
-							 </td>
+								?>
+							</td>
 						</tr>
 					</table>
 				</div>
