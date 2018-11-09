@@ -1,10 +1,17 @@
 <?php include "inc/header.php"; ?>
-<?php 
+<?php
+	if (isset($_GET['delcartid'])){
+			$delcartid  = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['delcartid']) ;
+			$deleteCartById = $crt->deleteCartById($delcartid);
+		}
+
+		?>
+<?php	 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	        $cartId = $_POST['cartId'];
 	        $quantity = $_POST['quantity'];
-
-	        $updateCart = $crt->updateCart($cartId, $quantity);
+			$updateCart = $crt->updateCart($cartId, $quantity);
+	       
 	    }
  ?>
 <div class="main">
@@ -13,6 +20,7 @@
 			<div class="cartpage">
 				<h2>Your Cart</h2>
 				<?php if (isset($updateCart)) {echo $updateCart;} ?>
+				<?php if (isset($deleteCartById)) {echo $deleteCartById;} ?>
 				<table class="tblone">
 					<tr>
 						<th width="5%">SL</th>
@@ -50,7 +58,7 @@
 									?>
 									
 								</td>
-								<td><a href="">X</a></td>
+								<td><a onclick="return confirm('Are you sure to Delete ?')" href="?delcartid=<?php echo $result['cartId']; ?>">X</a></td>
 							</tr>
 							<?php $sum = $sum + $total;?>
 						<?php }} ?>
