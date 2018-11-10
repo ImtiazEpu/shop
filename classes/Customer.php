@@ -61,29 +61,14 @@
 
 		    }
 
-		    if (strlen($password) < 7) {
+		    if (strlen($password) < 8) {
             	$emperrmsg = "<span class='error'>Please choose a password with at least 8 characters.!!</span>";
 		    			return $emperrmsg;
             
-        	}elseif (!preg_match("#[0-9]+#", $password)) {
-            	$emperrmsg = "<span class='error'>Password must contain at lest one numeric!!</span>";
+        	}
+        	if (!preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$#", $password)) {
+            	$emperrmsg = "<span class='error'>Password is weak. please choose a stronger password</span>";
 		    			return $emperrmsg;
-
-        	}elseif (!preg_match("#[A-Z]+#", $password)) {
-            	$emperrmsg = "<span class='error'>Password must contain at lest one uppercase!!</span>";
-		    			return $emperrmsg;
-
-        	}elseif (!preg_match("#[a-z]+#", $password)) {
-            	$emperrmsg = "<span class='error'>Password must contain at lest one lowercase !!</span>";
-		    			return $emperrmsg;
-
-        	}elseif (!preg_match("#[\W]+#", $password)) {
-            	$emperrmsg = "<span class='error'>Password must contain at lest one special characters (@#$%^&+=§!?) !!</span>";
-		    			return $emperrmsg;
-
-        	/*}elseif (!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]$/', $password)) {
-            	$emperrmsg = "<span class='error' style='font-size:11px !important;'>Password must contain at lest one lowercase, one uppercase, one numeric, and @#$%^& !!</span>";
-		    			return $emperrmsg;*/
 
         	}else {
         		$password = md5($password);
