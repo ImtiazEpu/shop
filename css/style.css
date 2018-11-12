@@ -1731,9 +1731,10 @@ table.tblone img {
   margin-top: 30px;
 }
 .shopleft, .shopleft {
-  float: left;
-  text-align: center;
-  width: 610px;
+	float: left;
+	text-align: center;
+	width: 400px;
+	margin-left: 373px;
 }
 .shopleft img{outline:none}
 .shopleft a,.shopright a{outline:none}

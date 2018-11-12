@@ -22,6 +22,17 @@
 
 
   ?>
+  <style type="text/css">
+  	.tbltwo {
+	float: right;
+	text-align: left;
+	width: 50%;
+	border: 2px solid #ddd;
+	margin-right: 370px;
+	margin-top: 10px;
+}
+.tbltwo tr td{text-align: right; padding: 15px 27px 15px 10px}
+  </style>
 <div class="main">
 	<div class="content">
 		<div class="cartoption">		
@@ -82,26 +93,34 @@
 						$getCart = $crt->checkCartTable();
 							 if ($getCart) {
 					 ?>
-					<table style="float:right;text-align:left;" width="40%">
-						<tr>
-							<th>Sub Total : </th>
-							<td>$<?php echo $sum; ?></td>
-						</tr>
-						<tr>
-							<th>VAT : </th>
-							<td>15%</td>
-						</tr>
-						<tr>
-							<th>Grand Total :</th>
-							<td>
-								$<?php 
-									$vat = $sum * 0.15;
-									$gTotal = $sum + $vat;
-									echo $gTotal;
-								?>
-							</td>
-						</tr>
-					</table>
+					<table class="tbltwo">
+                        <tr>
+                            <td style="text-align:left">Sub Total</td>
+                            <td>:</td>
+                            <td>$ <?php echo $sum; ?></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">Quantity</td>
+                            <td>:</td>
+                            <td><?php echo $qty; ?></td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid #ddd">
+                            <td style="text-align:left">VAT(15%)</td>
+                            <td>:</td>
+                            <td>(+) <?php echo $vat = $sum * 0.15; ?></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">Grand Total</td>
+                            <td>:</td>
+                            <td>
+                                $ <?php 
+                                $vat = $sum * 0.15;
+                                $gTotal = $sum + $vat;
+                                echo $gTotal;
+                                ?>
+                            </td>
+                        </tr>
+                    </table>
 				<?php }else {
 					echo "<script type='text/javascript'>window.top.location='index.php';</script>"; 
 				}

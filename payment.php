@@ -13,8 +13,8 @@
     	<div class="section group">	
     		<div class="payment">
     			<h2>Choose Payment option</h2>
-    			<a href="offline.php">Offline Pay</a>
-    			<a href="offline.php">Online Pay</a>
+    			<a href="paymentoffline.php">Offline Pay</a>
+    			<a href="online.php">Online Pay</a>
     		</div>
     		<div class="back">
     			<a href="cart.php">Previous</a>
