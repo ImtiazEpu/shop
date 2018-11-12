@@ -302,7 +302,7 @@ input[type="number"] {
 
 .login_panel{
 	float:left;
-	width: 245px;
+	width: 355px;
 	margin-right: 10px;
 	padding:20px;
 	background:#FFF;
@@ -2595,3 +2595,4 @@ p.terms {
 	display: block;
 	font-size: 200px;
 }
+

@@ -85,6 +85,42 @@
         }/* End Customer Registration Method*/
 
 
+
+
+
+
+        /* Customer Login Method
+		 =============================*/
+        public function customerLogin($data){
+        	$email     =   $this->fm->validation($data['email']);
+	    	$password  =   $this->fm->validation($data['password']);
+
+	    	$email     =   mysqli_real_escape_string($this->db->link,$email);
+	    	$password  =   mysqli_real_escape_string($this->db->link,$password);
+
+	    	if ($email == "" || $password == "") {
+			    		$emperrmsg = "<span class='error'>Filed must not be empty !!</span>";
+		    			return $emperrmsg;
+		    }
+
+		    $password = md5($password);
+		    $logquery = "SELECT * FROM tbl_customer WHERE email = '$email' AND password ='$password'";
+		    $logcheck = $this->db->select($logquery);
+		    	if ($logcheck != false) {
+		    		$result = $logcheck->fetch_assoc();
+		    			Session::set("login", true);
+						Session::set("cmrName", $result['name']);
+						Session::set("cmrId",   $result['cusId']);
+						echo "<script type='text/javascript'>window.top.location='order.php';</script>";
+				}else {
+					$emperrmsg = "<span class='error'>The Username or Password is incorrect !!</span>";
+		    				return $emperrmsg;
+				}
+		    		
+        	
+        }/* End Customer Login Method*/
+
+
 	}
 
  ?>
