@@ -60,7 +60,7 @@
 						?>
 							
 					</td>
-					<td><a class="btn btn-info" href="editpro.php?proeditid=<?php echo $result['productId']; ?>">Edit</a>  <a class="btn btn-danger" onclick="return confirm('Are you sure to Delete ?');" href="?prodelid=<?php echo $result['productId']; ?>">Delete</a></td>
+					<td><a class="btn btn-blue" href="editpro.php?proeditid=<?php echo $result['productId']; ?>">Edit</a>  <a class="btn btn-red" onclick="return confirm('Are you sure to Delete ?');" href="?prodelid=<?php echo $result['productId']; ?>">Delete</a></td>
 				</tr>
 			<?php }} ?>
 				

@@ -135,6 +135,58 @@
         }/* End Get Customer Data(Profile)*/
 
 
+
+        /* Update Profile
+		    =======================*/
+
+		    public function profileUpdate($data,$cmrId){
+		    	$name      =   $this->fm->validation($data['name']);
+		    	$zipcode   =   $this->fm->validation($data['zipcode']);
+		    	$city      =   $this->fm->validation($data['city']);
+		    	$country   =   $this->fm->validation($data['country']);
+		    	$email     =   $this->fm->validation($data['email']);
+		    	$phone     =   $this->fm->validation($data['phone']);
+		    	
+
+		    	$name      =   mysqli_real_escape_string($this->db->link,$name);
+		    	$address   =   mysqli_real_escape_string($this->db->link,$data['address']);
+		    	$zipcode   =   mysqli_real_escape_string($this->db->link,$zipcode);
+		    	$city      =   mysqli_real_escape_string($this->db->link,$city);
+		    	$country   =   mysqli_real_escape_string($this->db->link,$country);
+		    	$email     =   mysqli_real_escape_string($this->db->link,$email);
+		    	$phone     =   mysqli_real_escape_string($this->db->link,$phone);
+			    	if ($name == "" || $address == "" || $zipcode == "" || $city == "" || $country == "" || $email == "" || $phone == "") {
+				    		$emperrmsg = "<span class='error'>Filed must not be empty !!</span>";
+			    			return $emperrmsg;
+			    	}
+			    	if(filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+				    	$emperrmsg = "<span class='error'> Please Enter Valid Email !!</span>";
+				    			return $emperrmsg;
+					}
+			    	else {
+				    		$query = "UPDATE tbl_customer 
+				    				 SET
+				    				 name    = '$name', 
+				    				 address = '$address', 
+				    				 zipcode = '$zipcode', 
+				    				 city    = '$city', 
+				    				 country = '$country', 
+				    				 email   = '$email', 
+				    				 phone   = '$phone' 
+				    				 WHERE cusId = '$cmrId'";
+				    		$result = $this->db->update($query);
+				    		if ($result) {
+				    			$successmsg = "<span class='successs'>Profile Update Successfully !!</span>";
+			    				return $successmsg;
+				    		}else {
+				    			$errormsg = "<span class='error'>Something went wrong !!</span>";
+			    				return $errormsg;
+				    		}
+				    }
+		    	
+		    }/*End Profile  Update Method */
+
+
 	}
 
  ?>

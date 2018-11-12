@@ -39,6 +39,13 @@
 
 		public static function destroy(){
 			session_destroy();
+			echo "<script type='text/javascript'>window.top.location='login.php';</script>";
+		
+		}
+
+
+		public static function customerLoginDestroy(){
+			session_destroy();
 			echo "<script type='text/javascript'>window.top.location='index.php';</script>";
 		
 		}

@@ -67,7 +67,7 @@
 									?>
 									
 								</td>
-								<td><a onclick="return confirm('Are you sure to Delete ?')" href="?delcartid=<?php echo $result['cartId']; ?>">X</a></td>
+								<td><a  class="btn btn-red" onclick="return confirm('Are you sure to Delete ?')" href="?delcartid=<?php echo $result['cartId']; ?>">Delete</a></td>
 							</tr>
 							<?php 
 								$sum = $sum + $total;
@@ -112,7 +112,7 @@
 						<a href="index.php"> <img src="images/shop.png" alt="" /></a>
 					</div>
 					<div class="shopright">
-						<a href="login.php"> <img src="images/check.png" alt="" /></a>
+						<a href="payment.php"> <img src="images/check.png" alt="" /></a>
 					</div>
 				</div>
 			</div>  	

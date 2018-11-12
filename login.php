@@ -60,7 +60,7 @@
  									<input type="text" name="zipcode" placeholder="Zipcode">
  								</div>
  								<div>
- 									<input type="text" name="email" placeholder="Email">
+ 									<input type="email" name="email" placeholder="Email">
  								</div>
  							</td>
  							<td>

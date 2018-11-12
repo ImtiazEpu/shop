@@ -51,7 +51,7 @@
 <body>
   <div class="wrap">
 		<div class="header_top">
-			<div class="logo">
+			<div class="logo" >
 				<a href="index.php"><img src="images/logo.png" alt="" /></a>
 			</div>
 			  <div class="header_top_right">
@@ -85,7 +85,8 @@
 <?php  
 	if (isset($_GET['cid'])) {
 		$deldata =  $crt->delCustomerCart();
-		Session::destroy();
+		Session::customerLoginDestroy();
+		
 	}
 ?>
 		   <div class="login">
@@ -112,6 +113,7 @@
  	$checkCart = $crt->checkCartTable();
  	if ($checkCart) {?>
 	  <li><a href="cart.php">Cart</a></li>
+	  <li><a href="payment.php">Payment</a></li>
 <?php } ?>
 	
 	  <li><a href="contact.php">Contact</a> </li>

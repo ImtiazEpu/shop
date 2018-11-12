@@ -44,7 +44,7 @@
 						<tr class="odd gradeX">
 							<td><?php echo $i; ?></td>
 							<td><?php echo $result['brandName']; ?></td>
-							<td><a href="editbrand.php?brandeditid=<?php echo $result['brandId']; ?>">Edit</a> || <a onclick="return confirm('Are you sure to Delete ?');" href="?branddelid=<?php echo $result['brandId']; ?>">Delete</a></td>
+							<td><a class="btn btn-blue" href="editbrand.php?brandeditid=<?php echo $result['brandId']; ?>">Edit</a> <a class="btn btn-red" onclick="return confirm('Are you sure to Delete ?');" href="?branddelid=<?php echo $result['brandId']; ?>">Delete</a></td>
 						</tr>
 					<?php 	}}else {
 						echo "<span class='error'>Something went wrong !! Brand not found.</span>";
