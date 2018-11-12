@@ -141,5 +141,18 @@
 
 			    } /* End Productto cart Method*/
 
-			}/*End Cart Class*/
+
+
+
+			    /* Delete Customer cart(logout)
+				 =======================*/
+			    public function delCustomerCart(){
+			    	$sessionId = session_id();
+			    	$query = "DELETE FROM tbl_cart WHERE sessionId = '$sessionId' ";
+			    	$result = $this->db->delete($query);
+			    	return $result;
+			    }/* End Delete Customer cart(logout)*/
+
+
+		} /*End Cart Class*/
 ?>

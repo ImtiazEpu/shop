@@ -121,6 +121,20 @@
         }/* End Customer Login Method*/
 
 
+
+
+
+
+        /* Get Customer Data(Profile)
+		===============================*/
+        public function getCustomerDataByID($id){
+        	$query  = "SELECT * FROM tbl_customer WHERE cusId = '$id' ";
+				 	$result = $this->db->select($query);
+				 	return $result;
+
+        }/* End Get Customer Data(Profile)*/
+
+
 	}
 
  ?>
