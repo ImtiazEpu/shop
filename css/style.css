@@ -2835,8 +2835,16 @@ table.content input[type="text"], table.content input[type="email"] {
 	border: 1px solid #ccc;
 }
 
- 	.payment{ width: 550px; min-height: 200px; text-align: center; border: 1px solid #ddd; margin: 0 auto; padding: 50px; }
- 	.payment h2 {
+.payment{ 
+	width: 550px; 
+	min-height: 200px; 
+	text-align: center; 
+	border: 1px solid #ddd; 
+	margin: 0 auto; 
+	padding: 50px; 
+}
+
+.payment h2 {
 	margin-bottom: 40px;
 	font-weight: bold;
 }
@@ -2903,3 +2911,48 @@ table.content input[type="text"], table.content input[type="email"] {
 	transition: box-shadow 0.2s ease-out, opacity 0.45s;
 }
 
+
+.success{ 
+	width: 550px; 
+	min-height: 200px; 
+	text-align: center; 
+	border: 1px solid #ddd; 
+	margin: 0 auto; 
+	padding: 50px; 
+}
+
+.success h2 {
+	font-weight: bold;
+}
+.success p{
+	line-height: 30px;
+	font-weight: bold;
+}
+ .success a {
+	background: #6ABC6D;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	-ms-border-radius: 30px;
+	-o-border-radius: 30px;
+	border-radius: 30px;
+	color: #fff;
+	cursor: pointer;
+	font: bold 15px Helvetica, Arial, sans-serif;
+	height: 45px;
+	margin: 10px 0 10px 15px;
+	position: relative;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+	width: 150px;
+	border: 0px;
+	padding: 15px 20px;
+}
+.success a:hover{
+	background: #26C22B !important;
+	-webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15) !important;
+	box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15) !important;
+	border: 0px !important;
+	-webkit-box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+	box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+	-webkit-transition: -webkit-box-shadow 0.2s ease-out, opacity 0.45s;
+	transition: box-shadow 0.2s ease-out, opacity 0.45s;
+}

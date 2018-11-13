@@ -154,5 +154,68 @@
 			    }/* End Delete Customer cart(logout)*/
 
 
+
+
+
+			    /* Product order 
+				 =======================*/
+			    public function orderProduct($cmrId){
+			    	$sessionId = session_id();
+			    	$query  = "SELECT * FROM tbl_cart WHERE sessionId = '$sessionId' ";
+			    	$getProduct = $this->db->select($query);
+			    	if ($getProduct) {
+			    		while ($result    = $getProduct->fetch_assoc()) {
+			    		    $productId    = $result['productId'];
+			    		    $productName  = $result['productName'];
+			    		    $quantity     = $result['quantity'];
+			    		    $productPrice = $result['productPrice'] * $quantity;
+			    		    $productImage = $result['productImage'];
+
+			    		    $query  = "INSERT INTO tbl_order(cmrId,productId,productName,quantity,productPrice,productImage) VALUES('$cmrId','$productId','$productName','$quantity','$productPrice','$productImage')";
+			    		    $this->db->insert($query);
+					    	
+			    		}
+			    	}
+			    	
+			    }/* End Product order Method*/
+
+
+
+
+			    /* Payable amount
+				 =======================*/
+			    public function payableAmount($cmrId){
+			    	$query  = "SELECT productPrice FROM tbl_order WHERE cmrId = '$cmrId' AND date = now()";
+				 	$result = $this->db->select($query);
+				 	return $result;
+			    	
+			    }/* End Payable amount*/
+
+
+
+			    /* Order details
+				 =======================*/
+			    public function getOrderDetails($cmrId){
+			    	$query  = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId' ORDER BY productId DESC";
+				 	$result = $this->db->select($query);
+				 	return $result;
+			    	
+			    }/* End Order details*/
+
+
+
+			    /* Check Order details
+				 =======================*/
+			    public function checkOrder($cmrId){
+			    	$query  = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId'";
+				 	$result = $this->db->select($query);
+				 	return $result;
+			    	
+			    }/* End Check Order details*/
+
+
+
+
+
 		} /*End Cart Class*/
 ?>

@@ -115,6 +115,13 @@
 	  <li><a href="cart.php">Cart</a></li>
 	  <li><a href="payment.php">Payment</a></li>
 <?php } ?>
+
+<?php 
+	$cmrId = Session::get("cmrId");
+ 	$checkOrder = $crt->checkOrder($cmrId);
+ 	if ($checkOrder) {?>
+	  	<li><a href="orderdetails.php">Order</a></li>
+<?php } ?>
 	
 	  <li><a href="contact.php">Contact</a> </li>
 <?php 

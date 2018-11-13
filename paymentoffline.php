@@ -6,7 +6,15 @@
 		echo "<script type='text/javascript'>window.top.location='login.php';</script>";
 	}
 
+    if (isset($_GET['oderid']) && $_GET['oderid']== 'order') {
+        $cmrId = Session::get("cmrId");
+        $orderProduct = $crt->orderProduct($cmrId);
+        $deldata      = $crt->delCustomerCart();
+        echo "<script type='text/javascript'>window.top.location='ordersuccess.php';</script>";
+    }
+
  ?>
+
 
 <style type="text/css">
 .tblone{width: 716px;margin: 0 auto; border: 2px solid #ddd;} 
@@ -153,7 +161,7 @@
     	</div> 
          <div class="back" style="margin-top: 70px;">
                 <a href="cart.php">Previous</a>
-                <a style="background: #26C22B !important;" href="order.php">Order Now</a>
+                <a style="background: #26C22B !important;" href="?oderid=order">Order Now</a>
             </div>
     </div>
  </div>
