@@ -40,18 +40,18 @@
 								<td>
 									<?php 
 										if ($result['status'] == 0 ) {
-											echo "Pending";
+											echo "<a class='btn btn-orange' href=''>Pending</a>";
 										}else {
-											echo "Confrirm";
+											echo "<a class='btn btn-green' href=''>Order confirmed</a>";
 										}
 									?>
-									
+									</a>
 								</td>
 								<?php 
 									if ($result['status'] == 1 ) {?>
 								<td><a  class="btn btn-red" onclick="return confirm('Are you sure to Delete ?')" href="">Delete</a></td>
 							<?php }else {?>
-								<td>N/A</td>
+								<td><a class="btn btn-grey" href="">N/A</a></td>
 							<?php } ?>
 							</tr>
 						<?php }} ?>

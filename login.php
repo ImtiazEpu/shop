@@ -2,7 +2,7 @@
 <?php 
 	$login = Session::get("login");
 	if ($login==true) {
-		echo "<script type='text/javascript'>window.top.location='order.php';</script>";
+		echo "<script type='text/javascript'>window.top.location='index.php';</script>";
 	}
 
 

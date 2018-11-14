@@ -111,7 +111,7 @@
 		    			Session::set("login", true);
 						Session::set("cmrName", $result['name']);
 						Session::set("cmrId",   $result['cusId']);
-						echo "<script type='text/javascript'>window.top.location='order.php';</script>";
+						echo "<script type='text/javascript'>window.top.location='index.php';</script>";
 				}else {
 					$emperrmsg = "<span class='error'>The Username or Password is incorrect !!</span>";
 		    				return $emperrmsg;

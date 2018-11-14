@@ -196,7 +196,7 @@
 			    /* Order details
 				 =======================*/
 			    public function getOrderDetails($cmrId){
-			    	$query  = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId' ORDER BY productId DESC";
+			    	$query  = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId' ORDER BY date DESC";
 				 	$result = $this->db->select($query);
 				 	return $result;
 			    	
@@ -213,6 +213,70 @@
 			    	
 			    }/* End Check Order details*/
 
+
+
+			    /* Get Order details in admin panel
+				 =======================*/
+			    public function getAllOrderProduct(){
+			    	$query  = "SELECT * FROM tbl_order ORDER BY date DESC";
+				 	$result = $this->db->select($query);
+				 	return $result;
+			    	
+			    }/* End Get Order details in admin panel*/
+
+			    
+
+
+			    /* Product Shipped update
+				 =======================*/
+			    public function productShipped($id,$time,$price){
+			    	$id    = $this->fm->validation($id);
+			    	$time  = $this->fm->validation($time);
+			    	$price = $this->fm->validation($price);
+
+		    		$id    = mysqli_real_escape_string($this->db->link,$id);
+		    		$time  = mysqli_real_escape_string($this->db->link,$time);
+		    		$price = mysqli_real_escape_string($this->db->link,$price);
+
+		    		$query = "UPDATE tbl_order 
+			    				 SET
+			    				 status = '1' 
+			    				 WHERE cmrId = '$id' AND date = '$time' AND productPrice = '$price'";
+					    		$result = $this->db->update($query);
+					    		if ($result) {
+					    			$successmsg = "<span class='successs'>Order Confirm Successfully !!</span>";
+			    						return $successmsg;
+					    		}else {
+					    			$errormsg = "<span class='error'>Something went wrong !!</span>";
+				    					return $errormsg;
+					    		}
+			    	
+			    }/* End Product Shipped update*/
+
+
+
+
+			    /* Delete order from admin panel
+				 =======================*/
+			    public function deletConfirmOrder($id,$time,$price){
+			    	$id    = $this->fm->validation($id);
+			    	$time  = $this->fm->validation($time);
+			    	$price = $this->fm->validation($price);
+
+		    		$id    = mysqli_real_escape_string($this->db->link,$id);
+		    		$time  = mysqli_real_escape_string($this->db->link,$time);
+		    		$price = mysqli_real_escape_string($this->db->link,$price);
+
+			    	$query = "DELETE FROM tbl_cart WHERE cmrId = '$id' AND date = '$time' AND productPrice = '$price'";
+			    	$result = $this->db->delete($query);
+			    	if ($result) {
+			    		$successmsg = "<span class='successs'>Order Deleted Successfully !!</span>";
+			    			return $successmsg;
+					}else {
+					    $errormsg = "<span class='error'>Something went wrong !!</span>";
+				    		return $errormsg;
+					    }
+			    }/* End  Delete order from admin panel*/
 
 
 
