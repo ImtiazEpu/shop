@@ -361,9 +361,9 @@ $filepath = realpath(dirname(__FILE__));
 		    /* Insert Compare Product 
 		    =======================*/
 
-		    public function productCompare($cmrId,$productId){
+		    public function productCompare($cmrId,$proid){
 		    	$cmrId  = mysqli_real_escape_string($this->db->link,$cmrId);
-		    	$productId  = mysqli_real_escape_string($this->db->link,$productId);
+		    	$productId  = mysqli_real_escape_string($this->db->link,$proid);
 
 		    	$query  = "SELECT * FROM tbl_compare WHERE cmrId = '$cmrId' AND productId = '$productId'";
 		    	$result = $this->db->select($query);
@@ -398,7 +398,7 @@ $filepath = realpath(dirname(__FILE__));
 
 
 
-		    /* Insert Compare Product 
+		    /* Get Compare Product 
 		    =======================*/
 		    public function getCompareProduct($cmrId){
 		    	$cmrId  = mysqli_real_escape_string($this->db->link,$cmrId);
@@ -406,7 +406,7 @@ $filepath = realpath(dirname(__FILE__));
 		    	$result = $this->db->select($query);
 		    	return $result;
 		    	
-		    }/*End Insert Compare Product */
+		    }/*End Get Compare Product */
 
 
 
@@ -419,6 +419,71 @@ $filepath = realpath(dirname(__FILE__));
 			    }/* End Delete Compare Data(logout)*/
 
 
+
+
+
+			 /* Insert Wishlist Product 
+		    =======================*/
+
+		    public function addWishlist($cmrId,$proid){
+		    	$cmrId  = mysqli_real_escape_string($this->db->link,$cmrId);
+		    	$productId  = mysqli_real_escape_string($this->db->link,$proid);
+
+		    	$query  = "SELECT * FROM tbl_wlist WHERE cmrId = '$cmrId' AND productId = '$productId'";
+		    	$result = $this->db->select($query);
+		    	if ($result) {
+		    		$warningmsg = "<span style='margin-left: 25px;' class='warning'>WishList Already Added!!</span>";
+	    				return $warningmsg;
+		    	}
+
+		    	$query  = "SELECT * FROM tbl_product WHERE productId = '$productId' ";
+			    	$result = $this->db->select($query)->fetch_assoc();
+			    	if ($result) {
+			    		    $productId    = $result['productId'];
+			    		    $productName  = $result['productName'];
+			    		    $productPrice = $result['productPrice'];
+			    		    $productImage = $result['productImage'];
+
+			    		    $query  = "INSERT INTO tbl_wlist(cmrId,productId,productName,productPrice,productImage) VALUES('$cmrId','$productId','$productName','$productPrice','$productImage')";
+			    		    $insert_row = $this->db->insert($query);
+			    		    if ($insert_row) {
+			    		    		$successmsg = "<span style='margin-left: 25px;' class='successs'>Added !! Check Wishlist Page</span>";
+	    							return $successmsg;
+				    		}else {
+				    			$errormsg = "<span style='margin-left: 25px;' class='error'>Something went wrong !!</span>";
+			    				return $errormsg;
+				    		}
+			    		 	
+			    	}
+
+		    }/*End Insert Wishlist Product */
+
+
+			/* Get Wishlist Product 
+		    =======================*/
+		    public function getWishlist($cmrId){
+		    	$cmrId  = mysqli_real_escape_string($this->db->link,$cmrId);
+		    	$query = "SELECT * FROM tbl_wlist WHERE cmrId = '$cmrId' ORDER BY id DESC";
+		    	$result = $this->db->select($query);
+		    	return $result;
+		    	
+		    }/*End Get Wishlist Product */
+
+
+
+		    /* Delete Wishlist Data
+				 =======================*/
+			    public function delWlistdata($productId,$cmrId){
+			    	$query = "DELETE FROM tbl_wlist WHERE cmrId = '$cmrId' AND productId = '$productId' ";
+			    	$result = $this->db->delete($query);
+			    	if ($result) {
+		    			$successmsg = "<span class='successs'>WishList Deleted Successfully !!</span>";
+	    				return $successmsg;
+		    		}else {
+		    			$errormsg = "<span class='error'>Something went wrong !!</span>";
+	    				return $errormsg;
+		    		}
+			    }/* End Delete Wishlist Data*/
 
 
 

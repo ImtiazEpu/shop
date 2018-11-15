@@ -8,6 +8,14 @@
 
  ?>
 
+<?php 
+	if (isset($_GET['delwlist'])) {
+		$productId = $_GET['delwlist'];
+		$delWlistdata = $prod->delWlistdata($productId,$cmrId);
+	}
+
+ ?>
+
   <style type="text/css">
   	
 table.tblone img{ height: 90px; width: 100px; }
@@ -16,7 +24,8 @@ table.tblone img{ height: 90px; width: 100px; }
 	<div class="content">
 		<div class="cartoption">		
 			<div class="cartpage">
-				<h2>Product Compare</h2>
+				<h2>WishList</h2>
+				<?php if (isset($delWlistdata)) {echo $delWlistdata;} ?>
 				<table class="tblone">
 					<tr>
 						<th>SL</th>
@@ -26,18 +35,20 @@ table.tblone img{ height: 90px; width: 100px; }
 						<th>Action</th>
 					</tr>
 
-					<?php 
-					$cmrId =Session::get("cmrId"); 
-					$getCompareProduct = $prod->getCompareProduct($cmrId);
-						if ($getCompareProduct) {
+					<?php  
+					$getWishlist = $prod->getWishlist($cmrId);
+						if ($getWishlist) {
 							$i=0;
-							while ($result = $getCompareProduct->fetch_assoc()) {$i++; ?>
+							while ($result = $getWishlist->fetch_assoc()) {$i++; ?>
 							<tr>
 								<td><?php echo $i; ?></td>
 								<td><?php echo $result['productName']; ?></td>
 								<td>$<?php echo $result['productPrice']; ?></td>
 								<td><img src="admin/<?php echo $result['productImage']; ?>" alt=""/></td>
-								<td><a class="btn btn-blue" href="preview.php?proid=<?php echo $result['productId']; ?>">View</a></td>
+								<td>
+									<a class="btn btn-green" href="preview.php?proid=<?php echo $result['productId']; ?>">Buy Now</a> 
+									<a class="btn btn-red" href="?delwlist=<?php echo $result['productId']; ?>">Remove</a>
+								</td>
 							</tr>
 							
 						<?php }} ?>

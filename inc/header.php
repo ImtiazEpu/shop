@@ -1,9 +1,10 @@
 <?php 
+    $filepath = realpath(dirname(__FILE__));
+	include_once ($filepath."/../lib/Session.php");
+	 Session::init();
+	include_once ($filepath."/../lib/Database.php");
+	include_once ($filepath."/../helpers/Formate.php");
     
-    include "/lib/Session.php"; 
-    Session::init();
-    include "/lib/Database.php"; 
-	include "/helpers/Formate.php";
 
 	spl_autoload_register( function($class){
 		include_once "classes/".$class.".php";
@@ -118,16 +119,23 @@
 <?php } ?>
 
 <?php 
-	$cmrId = Session::get("cmrId");
+	$cmrId =Session::get("cmrId");
  	$checkOrder = $crt->checkOrder($cmrId);
  	if ($checkOrder) {?>
 	  	<li><a href="orderdetails.php">Order</a></li>
 <?php } ?>
 <?php 
-	$cmrId =Session::get("cmrId"); 
+	
 	$getCompareProduct = $prod->getCompareProduct($cmrId);
 	if ($getCompareProduct){?>
 	 	<li><a href="compare.php">Compare</a> </li>
+<?php } ?>
+
+<?php 
+	
+	$checkWishlist = $prod->getWishlist($cmrId);
+	if ($checkWishlist){?>
+	 	<li><a href="wlist.php">Wishlist</a> </li>
 <?php } ?>
 	
 		<li><a href="contact.php">Contact</a> </li>

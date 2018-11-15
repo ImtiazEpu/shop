@@ -14,15 +14,21 @@
 
 ?>
 <?php
-	$cmrId =Session::get("cmrId"); 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['compare'])) {
-		 $productId = $_POST['productId'];
-        $productCompare = $prod->productCompare($cmrId,$productId);
+        $productCompare = $prod->productCompare($cmrId,$proid);
+    }
+ ?>
+
+ <?php 
+	if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['wlist'])) {
+        $addWishlist = $prod->addWishlist($cmrId,$proid);
     }
  ?>
 
 
-
+<style type="text/css">
+	.mybutton{width: 100px;float: left;margin-right: 40px;}
+</style>
 
 	    <div class="main">
 	    	<div class="content">
@@ -46,23 +52,31 @@
 	    							<div class="add-cart">
 	    								<form action="" method="post">
 	    									<input type="number" class="buyfield" name="quantity" value="1"/>
-	    									<input type="submit" class="buysubmit" name="submit" value="Buy Now"/>
+	    									<input style="margin-left: 16px;" type="submit" class="buysubmit" name="submit" value="Buy Now"/>
 	    								</form>				
 	    							</div>
 	    						</div>
 	    						<?php if (isset($addToCart)) {echo $addToCart;} ?>
 								<?php if (isset($productCompare)) {echo $productCompare;} ?>
+								<?php if (isset($addWishlist)) {echo $addWishlist;} ?>
 
 								<?php 
 									$login = Session::get("login");
 									if ($login==true) {?> 
 								<div style="margin-bottom: 2%" class="desc span_3_of_2">
 									<div class="add-cart">
+										<div class="mybutton">
 		    								<form action="" method="post">
-		    									<input type="hidden" class="buyfield" name="productId" value="<?php echo $result['productId']; ?>"/>
 		    									<input type="submit" class="buysubmit" name="compare" value="Add To Compare"/>
+		    								</form>	
+		    							</div>			
+		    						
+			    						<div class="mybutton">
+		    								<form action="" method="post">
+		    									<input type="submit" class="buysubmit" name="wlist" value="Add To Wishlist"/>
 		    								</form>				
-		    						</div>
+			    						</div>
+			    					</div>
 		    					</div>
 		    					<?php } ?>
 	    						<div class="product-desc">
