@@ -1209,9 +1209,9 @@ p.note{
 	padding:1.5%;
 }
 .images_3_of_2 img {
-  height: 302px;
+  height: 250px;
   max-width: 100%;
-  width: 100%;
+  
 }
 .span_3_of_2  h2 {
 	font-family: 'Monda', sans-serif;
@@ -1684,7 +1684,7 @@ p.note{
   border-bottom: 1px solid #ddd;
   font-size: 30px;
   margin-bottom: 20px;
-  width: 141px;
+  width: 300px;
 }
 .tblone {
 	border: 1px solid #fff;
@@ -1735,6 +1735,9 @@ table.tblone img {
 	text-align: center;
 	width: 400px;
 	margin-left: 373px;
+}
+.shopcenter{
+	text-align: center;
 }
 .shopleft img{outline:none}
 .shopleft a,.shopright a{outline:none}

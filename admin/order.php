@@ -19,11 +19,20 @@
 	}
 
 	if (isset($_GET['delid'])) {
-		$id = $_GET['shippedid'];
+		$id = $_GET['delid'];
 		$time = $_GET['time'];
 		$price = $_GET['price'];
 
 		$deletConfirmOrder = $crt->deletConfirmOrder($id,$time,$price);
+		
+	}
+
+	if (isset($_GET['cusrecid'])) {
+		$id = $_GET['cusrecid'];
+		$time = $_GET['time'];
+		$price = $_GET['price'];
+
+		$receivedOrder = $crt->receivedOrder($id,$time,$price);
 		
 	}
 
@@ -72,6 +81,9 @@
 												if ($result['status'] == '0') {?>
 													<td><a class="btn btn-green" href="?shippedid=<?php echo $result['cmrId'];?>&price=<?php echo $result['productPrice'];?>&time=<?php echo $result['date'];?>">Confirm Order </a></td>
 													
+												<?php }elseif($result['status'] == '1') { ?>
+													<td><a class="btn btn-green" href="?cusrecid=<?php echo $result['cmrId'];?>&price=<?php echo $result['productPrice'];?>&time=<?php echo $result['date'];?>">Customer Recevied</a></td>
+
 												<?php }else { ?>
 													<td><a class="btn btn-red" href="?delid=<?php echo $result['cmrId'];?>&price=<?php echo $result['productPrice'];?>&time=<?php echo $result['date'];?>">Detete</a></td>
 												<?php } ?>

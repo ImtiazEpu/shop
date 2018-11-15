@@ -84,7 +84,9 @@
 			      </div>
 <?php  
 	if (isset($_GET['cid'])) {
+		$cmrId =Session::get("cmrId");
 		$deldata =  $crt->delCustomerCart();
+		$delComparedata =  $prod->delComparedata($cmrId);
 		Session::customerLoginDestroy();
 		
 	}
@@ -107,7 +109,6 @@
 <div class="menu">
 	<ul id="dc_mega-menu-orange" class="dc_mm-orange">
 	  <li><a href="index.php">Home</a></li>
-	  <li><a href="products.php">Products</a> </li>
 	  <li><a href="topbrands.php">Top Brands</a></li>
  <?php 
  	$checkCart = $crt->checkCartTable();
@@ -122,8 +123,14 @@
  	if ($checkOrder) {?>
 	  	<li><a href="orderdetails.php">Order</a></li>
 <?php } ?>
+<?php 
+	$cmrId =Session::get("cmrId"); 
+	$getCompareProduct = $prod->getCompareProduct($cmrId);
+	if ($getCompareProduct){?>
+	 	<li><a href="compare.php">Compare</a> </li>
+<?php } ?>
 	
-	  <li><a href="contact.php">Contact</a> </li>
+		<li><a href="contact.php">Contact</a> </li>
 <?php 
 	
 	$login = Session::get("login");

@@ -42,11 +42,11 @@
 			    	$checkQuery = "SELECT *FROM tbl_cart WHERE productId = '$proid' AND sessionId = '$sessionId' ";
 			    	$gerProduct = $this->db->select($checkQuery);
 			    	if ($gerProduct) {
-			    		$warningmsg = "<span class='warning'>Products Already Added To Cart !!</span>";
+			    		$warningmsg = "<span style='margin-left: 25px;' class='warning'>Products Already Added To Cart !!</span>";
 	    				return $warningmsg;
 
 			    	}elseif ($quantity<=0) {
-			    		$warningmsg = "<span class='warning'>Quantity must be 1 or More !!</span>";
+			    		$warningmsg = "<span style='margin-left: 25px;' class='warning'>Quantity must be 1 or More !!</span>";
 			    		return $warningmsg;
 
 			    	}else {
@@ -277,6 +277,67 @@
 				    		return $errormsg;
 					    }
 			    }/* End  Delete order from admin panel*/
+
+
+
+
+
+				/* Product Confirm update
+				 =======================*/
+
+				public function confirmOrder($id,$time,$price){
+			    	$id    = $this->fm->validation($id);
+			    	$time  = $this->fm->validation($time);
+			    	$price = $this->fm->validation($price);
+
+		    		$id    = mysqli_real_escape_string($this->db->link,$id);
+		    		$time  = mysqli_real_escape_string($this->db->link,$time);
+		    		$price = mysqli_real_escape_string($this->db->link,$price);
+
+		    		$query = "UPDATE tbl_order 
+			    				 SET
+			    				 status = '2' 
+			    				 WHERE cmrId = '$id' AND date = '$time' AND productPrice = '$price'";
+					    		$result = $this->db->update($query);
+					    		if ($result) {
+					    			$successmsg = "<span class='successs'>Order Confirm Successfully !!</span>";
+			    						return $successmsg;
+					    		}else {
+					    			$errormsg = "<span class='error'>Something went wrong !!</span>";
+				    					return $errormsg;
+					    		}
+			    	
+			    }/* End Product Confirm update*/
+
+
+
+			    /* Product Received update
+				 =======================*/
+
+				public function receivedOrder($id,$time,$price){
+			    	$id    = $this->fm->validation($id);
+			    	$time  = $this->fm->validation($time);
+			    	$price = $this->fm->validation($price);
+
+		    		$id    = mysqli_real_escape_string($this->db->link,$id);
+		    		$time  = mysqli_real_escape_string($this->db->link,$time);
+		    		$price = mysqli_real_escape_string($this->db->link,$price);
+
+		    		$query = "UPDATE tbl_order 
+			    				 SET
+			    				 status = '2' 
+			    				 WHERE cmrId = '$id' AND date = '$time' AND productPrice = '$price'";
+					    		$result = $this->db->update($query);
+					    		if ($result) {
+					    			$successmsg = "<span class='successs'>Product rececived Successfully !!</span>";
+			    						return $successmsg;
+					    		}else {
+					    			$errormsg = "<span class='error'>Something went wrong !!</span>";
+				    					return $errormsg;
+					    		}
+			    	
+			    }/* End Product Received update*/
+
 
 
 

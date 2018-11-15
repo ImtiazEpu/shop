@@ -354,5 +354,72 @@ $filepath = realpath(dirname(__FILE__));
 
 
 
+		    
+
+
+
+		    /* Insert Compare Product 
+		    =======================*/
+
+		    public function productCompare($cmrId,$productId){
+		    	$cmrId  = mysqli_real_escape_string($this->db->link,$cmrId);
+		    	$productId  = mysqli_real_escape_string($this->db->link,$productId);
+
+		    	$query  = "SELECT * FROM tbl_compare WHERE cmrId = '$cmrId' AND productId = '$productId'";
+		    	$result = $this->db->select($query);
+		    	if ($result) {
+		    		$warningmsg = "<span style='margin-left: 25px;' class='warning'>Products Already Added For Compare !!</span>";
+	    				return $warningmsg;
+		    	}
+
+		    	$query  = "SELECT * FROM tbl_product WHERE productId = '$productId' ";
+			    	$result = $this->db->select($query)->fetch_assoc();
+			    	if ($result) {
+			    		    $productId    = $result['productId'];
+			    		    $productName  = $result['productName'];
+			    		    $productPrice = $result['productPrice'];
+			    		    $productImage = $result['productImage'];
+
+			    		    $query  = "INSERT INTO tbl_compare(cmrId,productId,productName,productPrice,productImage) VALUES('$cmrId','$productId','$productName','$productPrice','$productImage')";
+			    		    $insert_row = $this->db->insert($query);
+			    		    if ($insert_row) {
+			    		    		$successmsg = "<span style='margin-left: 25px;' class='successs'>Added !! Check Compare Page</span>";
+	    							return $successmsg;
+				    		}else {
+				    			$errormsg = "<span style='margin-left: 25px;' class='error'>Something went wrong !!</span>";
+			    				return $errormsg;
+				    		}
+			    		 	
+			    	}
+
+		    }/*End Insert Compare Product */
+
+
+
+
+
+		    /* Insert Compare Product 
+		    =======================*/
+		    public function getCompareProduct($cmrId){
+		    	$cmrId  = mysqli_real_escape_string($this->db->link,$cmrId);
+		    	$query = "SELECT * FROM tbl_compare WHERE cmrId = '$cmrId' ORDER BY id DESC";
+		    	$result = $this->db->select($query);
+		    	return $result;
+		    	
+		    }/*End Insert Compare Product */
+
+
+
+		    /* Delete Compare Data(logout)
+				 =======================*/
+			    public function delComparedata($cmrId){
+			    	$query = "DELETE FROM tbl_compare WHERE cmrId = '$cmrId' ";
+			    	$result = $this->db->delete($query);
+			    	return $result;
+			    }/* End Delete Compare Data(logout)*/
+
+
+
+
 
 	}/*End Product Class */

@@ -7,6 +7,18 @@
 	}
 
  ?>
+ <?php 
+
+ 	if (isset($_GET['customerid'])) {
+		$id    = $_GET['customerid'];
+		$time  = $_GET['time'];
+		$price = $_GET['price'];
+
+		$confirmOrder = $crt->confirmOrder($id,$time,$price);
+		
+	}
+
+  ?>
  <div class="main">
     <div class="content">
     	<div class="cartoption">		
@@ -37,22 +49,36 @@
 								<td><?php echo $result['quantity']; ?></td>
 								<td>$ <?php echo $result['productPrice']; ?></td>
 								<td><?php echo $fm->formateDate($result['date']); ?></td>
-								<td>
-									<?php 
-										if ($result['status'] == 0 ) {
-											echo "<a class='btn btn-orange' href=''>Pending</a>";
-										}else {
-											echo "<a class='btn btn-green' href=''>Order confirmed</a>";
-										}
-									?>
-									</a>
-								</td>
-								<?php 
-									if ($result['status'] == 1 ) {?>
-								<td><a  class="btn btn-red" onclick="return confirm('Are you sure to Delete ?')" href="">Delete</a></td>
-							<?php }else {?>
-								<td><a class="btn btn-grey" href="">N/A</a></td>
-							<?php } ?>
+
+
+									<?php if ($result['status'] == '1' ) {?>
+										<td><a class="btn btn-grey" href="#">N/A</a></td>
+									<?php }elseif ($result['status'] == '2' ){?>
+										<td><a class="btn btn-green" href="#">Order Received</a></td>
+									<?php }elseif ($result['status'] == '0' ) {?>
+										<td><a class="btn btn-grey" href="#">N/A</a></td>
+									<?php } ?>
+
+									<td>
+
+										<?php 
+											if ($result['status'] == '0' ) {
+												echo "<a class='btn btn-orange' href='#'>Pending</a>";
+
+											}elseif ($result['status'] == '1'){
+													echo "<a class='btn btn-blue' href='#'>Shipped</a>";
+											}else {
+													echo "<a class='btn btn-green' href='#'>Confirm</a>";
+											} 
+										?>
+									</td>
+
+									
+								
+
+								
+
+
 							</tr>
 						<?php }} ?>
 					</table>
@@ -62,3 +88,4 @@
     </div>
  </div>
 <?php include "inc/footer.php" ?>
+
